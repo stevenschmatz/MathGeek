@@ -9,11 +9,11 @@ static void window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
 
-  text_layer = text_layer_create((GRect) { .origin = { 0, 0 }, .size = { bounds.size.w, bounds.size.h } });
+  text_layer = text_layer_create((GRect) { .origin = { 10, 0 }, .size = { bounds.size.w-10, bounds.size.h } });
 
-  text_layer_set_text(text_layer, "Schmatz");
+  text_layer_set_text(text_layer, "steve\no'\nclock");
   text_layer_set_font(text_layer, fonts_get_system_font(FONT_KEY_BITHAM_42_LIGHT));
-  text_layer_set_text_alignment(text_layer, GTextAlignmentCenter);
+  text_layer_set_text_alignment(text_layer, GTextAlignmentLeft);
   layer_add_child(window_layer, text_layer_get_layer(text_layer));
 
 }
