@@ -16,6 +16,6 @@ typedef enum {
 } ResourceId;
 
 static const uint32_t resource_crc_table[] = {
-  963650009,
+  541967001,
 };
 

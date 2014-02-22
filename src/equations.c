@@ -12,8 +12,9 @@ static void window_load(Window *window) {
   GRect bounds = layer_get_bounds(window_layer);
 
   future_bitmap = gbitmap_create_with_resource(RESOURCE_ID_EQUATION_IMAGE);
-  future_layer = bitmap_layer_create(GRect(0, 0, 91, 100));
+  future_layer = bitmap_layer_create(GRect(0, 0, 72, 84));
   bitmap_layer_set_bitmap(future_layer, future_bitmap);
+  bitmap_layer_set_background_color(future_layer, GColorClear);
   layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(future_layer));
 
 }
@@ -31,6 +32,7 @@ static void init(void) {
     .unload = window_unload,
   });
   const bool animated = true;
+  window_set_background_color(window, GColorBlack);
   window_stack_push(window, animated);
 }
 
