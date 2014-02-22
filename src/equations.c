@@ -2,6 +2,8 @@
 
 static Window *window;
 static TextLayer *text_layer;
+GBitmap *future_bitmap;
+BitmapLayer *future_layer;
 
 
 
@@ -9,12 +11,10 @@ static void window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
 
-  text_layer = text_layer_create((GRect) { .origin = { 10, 0 }, .size = { bounds.size.w-10, bounds.size.h } });
-
-  text_layer_set_text(text_layer, "steve\no'\nclock");
-  text_layer_set_font(text_layer, fonts_get_system_font(FONT_KEY_BITHAM_42_LIGHT));
-  text_layer_set_text_alignment(text_layer, GTextAlignmentLeft);
-  layer_add_child(window_layer, text_layer_get_layer(text_layer));
+  future_bitmap = gbitmap_create_with_resource(RESOURCE_ID_EQUATION_IMAGE);
+  future_layer = bitmap_layer_create(GRect(0, 0, 91, 100));
+  bitmap_layer_set_bitmap(future_layer, future_bitmap);
+  layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(future_layer));
 
 }
 
@@ -36,6 +36,8 @@ static void init(void) {
 
 static void deinit(void) {
   window_destroy(window);
+  gbitmap_destroy(future_bitmap);
+  bitmap_layer_destroy(future_layer);
 }
 
 int main(void) {
