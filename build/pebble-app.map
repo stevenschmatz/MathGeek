@@ -1,21 +1,21 @@
 Archive member included because of file (symbol)
 
 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                              src/equations.c.8.o (app_event_loop)
+                              src/equations.c.19.o (app_event_loop)
 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
-                              src/equations.c.8.o (__aeabi_dsub)
+                              src/equations.c.19.o (__aeabi_dsub)
 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
-                              src/equations.c.8.o (__aeabi_dmul)
+                              src/equations.c.19.o (__aeabi_dmul)
 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
-                              src/equations.c.8.o (__aeabi_dcmplt)
+                              src/equations.c.19.o (__aeabi_dcmplt)
 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
-                              src/equations.c.8.o (__aeabi_d2iz)
+                              src/equations.c.19.o (__aeabi_d2iz)
 
 Allocating common symbols
 Common symbol       size              file
 
-future_bitmap       0x4               src/equations.c.8.o
-future_layer        0x4               src/equations.c.8.o
+future_bitmap       0x4               src/equations.c.19.o
+future_layer        0x4               src/equations.c.19.o
 
 Discarded input sections
 
@@ -31,12 +31,14 @@ Discarded input sections
  .jcr           0x0000000000000000        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
  .tm_clone_table
                 0x0000000000000000        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
- .text          0x0000000000000000        0x0 src/equations.c.8.o
- .bss           0x0000000000000000        0x0 src/equations.c.8.o
+ .text          0x0000000000000000        0x0 src/equations.c.19.o
+ .bss           0x0000000000000000        0x0 src/equations.c.19.o
  .text.get_number_of_perimeter_pixels
-                0x0000000000000000        0x8 src/equations.c.8.o
- .text          0x0000000000000000        0x0 appinfo.auto.c.8.o
- .bss           0x0000000000000000        0x0 appinfo.auto.c.8.o
+                0x0000000000000000        0x8 src/equations.c.19.o
+ .rodata.IMAGE_RESOURCE_IDS
+                0x0000000000000000       0x30 src/equations.c.19.o
+ .text          0x0000000000000000        0x0 appinfo.auto.c.19.o
+ .bss           0x0000000000000000        0x0 appinfo.auto.c.19.o
  .bss           0x0000000000000000        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.accel_data_service_subscribe__deprecated
                 0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
@@ -608,8 +610,8 @@ Linker script and memory map
 
 LOAD /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
 LOAD /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
-LOAD src/equations.c.8.o
-LOAD appinfo.auto.c.8.o
+LOAD src/equations.c.19.o
+LOAD appinfo.auto.c.19.o
 LOAD /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a
 START GROUP
 LOAD /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a
@@ -620,7 +622,7 @@ LOAD /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc
 
 .header         0x0000000000000000       0x82
  *(.pbl_header)
- .pbl_header    0x0000000000000000       0x82 appinfo.auto.c.8.o
+ .pbl_header    0x0000000000000000       0x82 appinfo.auto.c.19.o
                 0x0000000000000000                __pbl_app_info
 
 .text           0x0000000000000088      0xe41
@@ -668,25 +670,25 @@ LOAD /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc
                 0x0000000000000940                __aeabi_d2iz
  *(.text.*)
  .text.window_unload
-                0x0000000000000990        0x2 src/equations.c.8.o
+                0x0000000000000990        0x2 src/equations.c.19.o
  *fill*         0x0000000000000992        0x2 
  .text.window_load
-                0x0000000000000994       0xb0 src/equations.c.8.o
+                0x0000000000000994       0xb0 src/equations.c.19.o
  .text.handle_second_tick
-                0x0000000000000a44       0x10 src/equations.c.8.o
+                0x0000000000000a44       0x10 src/equations.c.19.o
                 0x0000000000000a44                handle_second_tick
  *fill*         0x0000000000000a54        0x4 
  .text.get_disc_x_position
-                0x0000000000000a58       0xe0 src/equations.c.8.o
+                0x0000000000000a58       0xe0 src/equations.c.19.o
                 0x0000000000000a58                get_disc_x_position
  .text.get_disc_y_position
-                0x0000000000000b38       0xd8 src/equations.c.8.o
+                0x0000000000000b38       0xd8 src/equations.c.19.o
                 0x0000000000000b38                get_disc_y_position
  .text.disc_layer_update_callback
-                0x0000000000000c10       0x44 src/equations.c.8.o
+                0x0000000000000c10       0x44 src/equations.c.19.o
                 0x0000000000000c10                disc_layer_update_callback
  .text.startup.main
-                0x0000000000000c54       0xec src/equations.c.8.o
+                0x0000000000000c54       0xec src/equations.c.19.o
                 0x0000000000000c54                main
  .text.app_event_loop
                 0x0000000000000d40        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
@@ -770,10 +772,10 @@ LOAD /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc
                 0x0000000000000e84        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
                 0x0000000000000e84                window_stack_push
  *(.rodata)
- .rodata        0x0000000000000e90        0x8 src/equations.c.8.o
+ .rodata        0x0000000000000e90        0x8 src/equations.c.19.o
  *(.rodata*)
  .rodata.str1.1
-                0x0000000000000e98       0x31 src/equations.c.8.o
+                0x0000000000000e98       0x31 src/equations.c.19.o
 
 .glue_7         0x0000000000000ecc        0x0
  .glue_7        0x0000000000000000        0x0 linker stubs
@@ -799,8 +801,8 @@ LOAD /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc
  .data          0x0000000000000ecc        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
  .data          0x0000000000000ecc        0x4 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
                 0x0000000000000ecc                __dso_handle
- .data          0x0000000000000ed0        0x0 src/equations.c.8.o
- .data          0x0000000000000ed0        0x0 appinfo.auto.c.8.o
+ .data          0x0000000000000ed0        0x0 src/equations.c.19.o
+ .data          0x0000000000000ed0        0x0 appinfo.auto.c.19.o
  .data          0x0000000000000ed0        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .data          0x0000000000000ed0        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
  .data          0x0000000000000ed0        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
@@ -824,11 +826,11 @@ LOAD /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc
  *(.bss)
  *(.bss.*)
  .bss.window_frame
-                0x0000000000000ee4        0x8 src/equations.c.8.o
+                0x0000000000000ee4        0x8 src/equations.c.19.o
  .bss.disc_layer
-                0x0000000000000eec        0x4 src/equations.c.8.o
- .bss.window    0x0000000000000ef0        0x4 src/equations.c.8.o
- COMMON         0x0000000000000ef4        0x8 src/equations.c.8.o
+                0x0000000000000eec        0x4 src/equations.c.19.o
+ .bss.window    0x0000000000000ef0        0x4 src/equations.c.19.o
+ COMMON         0x0000000000000ef4        0x8 src/equations.c.19.o
                 0x0000000000000ef4                future_bitmap
                 0x0000000000000ef8                future_layer
 
@@ -846,9 +848,9 @@ OUTPUT(/Users/stevenschmatz/Desktop/equations/build/pebble-app.elf elf32-littlea
  .ARM.attributes
                 0x0000000000000019       0x29 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
  .ARM.attributes
-                0x0000000000000042       0x33 src/equations.c.8.o
+                0x0000000000000042       0x33 src/equations.c.19.o
  .ARM.attributes
-                0x0000000000000075       0x33 appinfo.auto.c.8.o
+                0x0000000000000075       0x33 appinfo.auto.c.19.o
  .ARM.attributes
                 0x00000000000000a8       0x21 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .ARM.attributes
@@ -867,34 +869,34 @@ OUTPUT(/Users/stevenschmatz/Desktop/equations/build/pebble-app.elf elf32-littlea
 .comment        0x0000000000000000       0x4e
  .comment       0x0000000000000000       0x4e /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
                                          0x4f (size before relaxing)
- .comment       0x0000000000000000       0x4f src/equations.c.8.o
- .comment       0x0000000000000000       0x4f appinfo.auto.c.8.o
+ .comment       0x0000000000000000       0x4f src/equations.c.19.o
+ .comment       0x0000000000000000       0x4f appinfo.auto.c.19.o
  .comment       0x0000000000000000       0x4f /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
 
-.debug_info     0x0000000000000000     0x13e3
- .debug_info    0x0000000000000000      0xdb0 src/equations.c.8.o
- .debug_info    0x0000000000000db0      0x34f appinfo.auto.c.8.o
- .debug_info    0x00000000000010ff       0xb9 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
- .debug_info    0x00000000000011b8       0xb9 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
- .debug_info    0x0000000000001271       0xb9 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
- .debug_info    0x000000000000132a       0xb9 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
+.debug_info     0x0000000000000000     0x148e
+ .debug_info    0x0000000000000000      0xe19 src/equations.c.19.o
+ .debug_info    0x0000000000000e19      0x391 appinfo.auto.c.19.o
+ .debug_info    0x00000000000011aa       0xb9 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
+ .debug_info    0x0000000000001263       0xb9 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
+ .debug_info    0x000000000000131c       0xb9 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
+ .debug_info    0x00000000000013d5       0xb9 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
 
 .debug_abbrev   0x0000000000000000      0x4e8
- .debug_abbrev  0x0000000000000000      0x3ed src/equations.c.8.o
- .debug_abbrev  0x00000000000003ed       0xab appinfo.auto.c.8.o
+ .debug_abbrev  0x0000000000000000      0x3ed src/equations.c.19.o
+ .debug_abbrev  0x00000000000003ed       0xab appinfo.auto.c.19.o
  .debug_abbrev  0x0000000000000498       0x14 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
  .debug_abbrev  0x00000000000004ac       0x14 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
  .debug_abbrev  0x00000000000004c0       0x14 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
  .debug_abbrev  0x00000000000004d4       0x14 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
 
 .debug_loc      0x0000000000000000      0x253
- .debug_loc     0x0000000000000000      0x253 src/equations.c.8.o
+ .debug_loc     0x0000000000000000      0x253 src/equations.c.19.o
 
 .debug_aranges  0x0000000000000000       0xf0
  .debug_aranges
-                0x0000000000000000       0x58 src/equations.c.8.o
+                0x0000000000000000       0x58 src/equations.c.19.o
  .debug_aranges
-                0x0000000000000058       0x18 appinfo.auto.c.8.o
+                0x0000000000000058       0x18 appinfo.auto.c.19.o
  .debug_aranges
                 0x0000000000000070       0x20 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
  .debug_aranges
@@ -905,21 +907,21 @@ OUTPUT(/Users/stevenschmatz/Desktop/equations/build/pebble-app.elf elf32-littlea
                 0x00000000000000d0       0x20 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
 
 .debug_ranges   0x0000000000000000       0xa8
- .debug_ranges  0x0000000000000000       0xa8 src/equations.c.8.o
+ .debug_ranges  0x0000000000000000       0xa8 src/equations.c.19.o
 
 .debug_line     0x0000000000000000      0xa08
- .debug_line    0x0000000000000000      0x31a src/equations.c.8.o
- .debug_line    0x000000000000031a      0x12c appinfo.auto.c.8.o
+ .debug_line    0x0000000000000000      0x31a src/equations.c.19.o
+ .debug_line    0x000000000000031a      0x12c appinfo.auto.c.19.o
  .debug_line    0x0000000000000446      0x20a /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
  .debug_line    0x0000000000000650      0x226 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
  .debug_line    0x0000000000000876      0x10c /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
  .debug_line    0x0000000000000982       0x86 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
 
-.debug_str      0x0000000000000000      0x8d2
- .debug_str     0x0000000000000000      0x6fa src/equations.c.8.o
-                                        0x795 (size before relaxing)
- .debug_str     0x00000000000006fa      0x1d8 appinfo.auto.c.8.o
-                                        0x31a (size before relaxing)
+.debug_str      0x0000000000000000      0x999
+ .debug_str     0x0000000000000000      0x7c1 src/equations.c.19.o
+                                        0x85c (size before relaxing)
+ .debug_str     0x00000000000007c1      0x1d8 appinfo.auto.c.19.o
+                                        0x3ce (size before relaxing)
 
 .debug_frame    0x0000000000000000       0xd8
- .debug_frame   0x0000000000000000       0xd8 src/equations.c.8.o
+ .debug_frame   0x0000000000000000       0xd8 src/equations.c.19.o

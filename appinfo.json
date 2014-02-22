@@ -15,8 +15,63 @@
     "media": [
       {
         "type": "png",
-        "name": "EQUATION_IMAGE",
-        "file": "images/Equation.png"
+        "name": "ONE",
+        "file": "images/one.png"
+      },
+      {
+        "type": "png",
+        "name": "TWO",
+        "file": "images/two.png"
+      },
+      {
+        "type": "png",
+        "name": "THREE",
+        "file": "images/three.png"
+      },
+      {
+        "type": "png",
+        "name": "FOUR",
+        "file": "images/four.png"
+      },
+      {
+        "type": "png",
+        "name": "FIVE",
+        "file": "images/five.png"
+      },
+      {
+        "type": "png",
+        "name": "SIX",
+        "file": "images/six.png"
+      },
+      {
+        "type": "png",
+        "name": "SEVEN",
+        "file": "images/seven.png"
+      },
+      {
+        "type": "png",
+        "name": "EIGHT",
+        "file": "images/eight.png"
+      },
+      {
+        "type": "png",
+        "name": "NINE",
+        "file": "images/nine.png"
+      },
+      {
+        "type": "png",
+        "name": "TEN",
+        "file": "images/ten.png"
+      },
+      {
+        "type": "png",
+        "name": "ELEVEN",
+        "file": "images/eleven.png"
+      },
+      {
+        "type": "png",
+        "name": "TWELVE",
+        "file": "images/twelve.png"
       }
     ]
   }

@@ -9,15 +9,25 @@ static Layer *disc_layer;
 #define MAXWIDTH 144
 #define MAXHEIGHT 168
 
+#define NUMBER_OF_IMAGES 12
+
+const int IMAGE_RESOURCE_IDS[NUMBER_OF_IMAGES] = {
+  RESOURCE_ID_ONE, RESOURCE_ID_TWO, RESOURCE_ID_THREE, 
+  RESOURCE_ID_FOUR, RESOURCE_ID_FIVE, RESOURCE_ID_SIX, 
+  RESOURCE_ID_SEVEN, RESOURCE_ID_EIGHT, RESOURCE_ID_NINE, 
+  RESOURCE_ID_TEN, RESOURCE_ID_ELEVEN, RESOURCE_ID_TWELVE
+};
+
+
 int get_number_of_perimeter_pixels(int width, int height) {
   return (2*width + 2*height - 4);
 }
 
-int get_disc_x_position(int seconds) {
+int get_disc_x_position(int minutes) {
   double middle = MAXWIDTH/2.0;
   int perimeter = get_number_of_perimeter_pixels(MAXWIDTH, MAXHEIGHT);
-  double increment = perimeter/60.0; // multiply by seconds to get pixels
-  double pixels = (increment*seconds);
+  double increment = perimeter/60.0; // multiply by minutes to get pixels
+  double pixels = (increment*minutes);
   
   if ((pixels >= 0) && (pixels < MAXWIDTH/2.0)) 
   {
@@ -43,11 +53,11 @@ int get_disc_x_position(int seconds) {
 
 }
 
-int get_disc_y_position(int seconds) {
+int get_disc_y_position(int minutes) {
   double middle = MAXWIDTH/2.0;
   int perimeter = get_number_of_perimeter_pixels(MAXWIDTH, MAXHEIGHT);
-  double increment = perimeter/60.0; // multiply by seconds to get pixels
-  double pixels = (increment*seconds);
+  double increment = perimeter/60.0; // multiply by minutes to get pixels
+  double pixels = (increment*minutes);
 
     if ((pixels >= 0) && (pixels < MAXWIDTH/2.0)) 
   {
@@ -83,7 +93,7 @@ static void window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   GRect frame = window_frame = layer_get_frame(window_layer);
 
-  future_bitmap = gbitmap_create_with_resource(RESOURCE_ID_EQUATION_IMAGE);
+  future_bitmap = gbitmap_create_with_resource(IMAGE_RESOURCE_IDS[0]);
   future_layer = bitmap_layer_create(GRect(0, 0, MAXWIDTH, MAXHEIGHT));
   bitmap_layer_set_bitmap(future_layer, future_bitmap);
   bitmap_layer_set_background_color(future_layer, GColorClear);
@@ -108,11 +118,11 @@ void disc_layer_update_callback(Layer *me, GContext* ctx) {
 
   time_t now = time(NULL);
   struct tm *t = localtime(&now);
-  int seconds = t->tm_sec;
+  int minutes = t->tm_sec;
 
   //int pixels = get_number_of_perimeter_pixels(MAXWIDTH, MAXHEIGHT); // 620 perimeter pixels
 
-  disc_draw(ctx, get_disc_x_position(seconds), get_disc_y_position(seconds));
+  disc_draw(ctx, get_disc_x_position(minutes), get_disc_y_position(minutes));
 
 }
 
