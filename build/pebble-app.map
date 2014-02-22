@@ -9,6 +9,7 @@ Common symbol       size              file
 p0                  0x4               src/equations.c.8.o
 future_bitmap       0x4               src/equations.c.8.o
 p1                  0x4               src/equations.c.8.o
+myContext           0x4               src/equations.c.8.o
 future_layer        0x4               src/equations.c.8.o
 
 Discarded input sections
@@ -240,6 +241,8 @@ Discarded input sections
                 0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.grect_align
                 0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+ .text.grect_center_point
+                0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.grect_clip
                 0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.grect_contains_point
@@ -264,6 +267,8 @@ Discarded input sections
                 0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.layer_destroy
                 0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+ .text.layer_get_bounds
+                0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.layer_get_clips
                 0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.layer_get_data
@@ -275,8 +280,6 @@ Discarded input sections
  .text.layer_insert_above_sibling
                 0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.layer_insert_below_sibling
-                0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
- .text.layer_mark_dirty
                 0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.layer_remove_child_layers
                 0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
@@ -457,6 +460,8 @@ Discarded input sections
  .text.strncpy  0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.text_layer_create
                 0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+ .text.text_layer_destroy
+                0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.text_layer_get_content_size
                 0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.text_layer_get_layer
@@ -476,10 +481,6 @@ Discarded input sections
  .text.text_layer_set_text_alignment
                 0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.text_layer_set_text_color
-                0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
- .text.tick_timer_service_subscribe
-                0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
- .text.tick_timer_service_unsubscribe
                 0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.time_ms  0x0000000000000000        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  .text.vibes_cancel
@@ -613,162 +614,166 @@ LOAD /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc
  .pbl_header    0x0000000000000000       0x82 appinfo.auto.c.8.o
                 0x0000000000000000                __pbl_app_info
 
-.text           0x0000000000000084      0x379
+.text           0x0000000000000084      0x381
  *(.text)
  .text          0x0000000000000084       0x14 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
  *(.text.*)
  .text.window_unload
-                0x0000000000000098       0x10 src/equations.c.8.o
+                0x0000000000000098        0x2 src/equations.c.8.o
+ *fill*         0x000000000000009a        0x2 
  .text.window_load
-                0x00000000000000a8       0xbc src/equations.c.8.o
- .text.disc_layer_update_callback
-                0x0000000000000164       0x5c src/equations.c.8.o
+                0x000000000000009c       0xb0 src/equations.c.8.o
+ .text.display_layer_update_callback
+                0x000000000000014c       0x34 src/equations.c.8.o
+                0x000000000000014c                display_layer_update_callback
+ .text.handle_second_tick
+                0x0000000000000180       0x10 src/equations.c.8.o
+                0x0000000000000180                handle_second_tick
  .text.startup.main
-                0x00000000000001c0       0xb4 src/equations.c.8.o
-                0x00000000000001c0                main
+                0x0000000000000190       0xec src/equations.c.8.o
+                0x0000000000000190                main
  .text.app_event_loop
-                0x0000000000000274        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000274                app_event_loop
- .text.app_log  0x0000000000000280        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000280                app_log
+                0x000000000000027c        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x000000000000027c                app_event_loop
+ .text.app_log  0x0000000000000288        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000288                app_log
  .text.bitmap_layer_create
-                0x000000000000028c        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x000000000000028c                bitmap_layer_create
+                0x0000000000000294        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000294                bitmap_layer_create
  .text.bitmap_layer_destroy
-                0x0000000000000298        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000298                bitmap_layer_destroy
+                0x00000000000002a0        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000002a0                bitmap_layer_destroy
  .text.bitmap_layer_get_layer
-                0x00000000000002a4        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000002a4                bitmap_layer_get_layer
+                0x00000000000002ac        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000002ac                bitmap_layer_get_layer
  .text.bitmap_layer_set_alignment
-                0x00000000000002b0        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000002b0                bitmap_layer_set_alignment
+                0x00000000000002b8        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000002b8                bitmap_layer_set_alignment
  .text.bitmap_layer_set_background_color
-                0x00000000000002bc        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000002bc                bitmap_layer_set_background_color
+                0x00000000000002c4        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000002c4                bitmap_layer_set_background_color
  .text.bitmap_layer_set_bitmap
-                0x00000000000002c8        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000002c8                bitmap_layer_set_bitmap
+                0x00000000000002d0        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000002d0                bitmap_layer_set_bitmap
  .text.gbitmap_create_with_resource
-                0x00000000000002d4        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000002d4                gbitmap_create_with_resource
+                0x00000000000002dc        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000002dc                gbitmap_create_with_resource
  .text.gbitmap_destroy
-                0x00000000000002e0        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000002e0                gbitmap_destroy
+                0x00000000000002e8        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000002e8                gbitmap_destroy
  .text.graphics_context_set_fill_color
-                0x00000000000002ec        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000002ec                graphics_context_set_fill_color
+                0x00000000000002f4        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000002f4                graphics_context_set_fill_color
  .text.graphics_fill_circle
-                0x00000000000002f8        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000002f8                graphics_fill_circle
- .text.grect_center_point
-                0x0000000000000304        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000304                grect_center_point
+                0x0000000000000300        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000300                graphics_fill_circle
  .text.layer_add_child
-                0x0000000000000310        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000310                layer_add_child
+                0x000000000000030c        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x000000000000030c                layer_add_child
  .text.layer_create
-                0x000000000000031c        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x000000000000031c                layer_create
- .text.layer_get_bounds
-                0x0000000000000328        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000328                layer_get_bounds
+                0x0000000000000318        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000318                layer_create
  .text.layer_get_frame
-                0x0000000000000334        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000334                layer_get_frame
+                0x0000000000000324        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000324                layer_get_frame
+ .text.layer_mark_dirty
+                0x0000000000000330        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000330                layer_mark_dirty
  .text.layer_set_update_proc
-                0x0000000000000340        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000340                layer_set_update_proc
+                0x000000000000033c        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x000000000000033c                layer_set_update_proc
  .text.localtime
-                0x000000000000034c        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x000000000000034c                localtime
- .text.memset   0x0000000000000358        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000358                memset
- .text.text_layer_destroy
-                0x0000000000000364        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000364                text_layer_destroy
- .text.time     0x0000000000000370        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000370                time
+                0x0000000000000348        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000348                localtime
+ .text.memset   0x0000000000000354        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000354                memset
+ .text.tick_timer_service_subscribe
+                0x0000000000000360        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000360                tick_timer_service_subscribe
+ .text.tick_timer_service_unsubscribe
+                0x000000000000036c        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x000000000000036c                tick_timer_service_unsubscribe
+ .text.time     0x0000000000000378        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000378                time
  .text.window_create
-                0x000000000000037c        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x000000000000037c                window_create
+                0x0000000000000384        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000384                window_create
  .text.window_destroy
-                0x0000000000000388        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000388                window_destroy
+                0x0000000000000390        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x0000000000000390                window_destroy
  .text.window_get_root_layer
-                0x0000000000000394        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x0000000000000394                window_get_root_layer
+                0x000000000000039c        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x000000000000039c                window_get_root_layer
  .text.window_set_background_color
-                0x00000000000003a0        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000003a0                window_set_background_color
+                0x00000000000003a8        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000003a8                window_set_background_color
  .text.window_set_window_handlers
-                0x00000000000003ac        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000003ac                window_set_window_handlers
+                0x00000000000003b4        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000003b4                window_set_window_handlers
  .text.window_stack_push
-                0x00000000000003b8        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
-                0x00000000000003b8                window_stack_push
+                0x00000000000003c0        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+                0x00000000000003c0                window_stack_push
  *(.rodata)
- .rodata        0x00000000000003c4        0x8 src/equations.c.8.o
+ .rodata        0x00000000000003cc        0x8 src/equations.c.8.o
  *(.rodata*)
  .rodata.str1.1
-                0x00000000000003cc       0x31 src/equations.c.8.o
+                0x00000000000003d4       0x31 src/equations.c.8.o
 
-.glue_7         0x0000000000000400        0x0
+.glue_7         0x0000000000000408        0x0
  .glue_7        0x0000000000000000        0x0 linker stubs
 
-.glue_7t        0x0000000000000400        0x0
+.glue_7t        0x0000000000000408        0x0
  .glue_7t       0x0000000000000000        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000000400        0x0
+.vfp11_veneer   0x0000000000000408        0x0
  .vfp11_veneer  0x0000000000000000        0x0 linker stubs
 
-.v4_bx          0x0000000000000400        0x0
+.v4_bx          0x0000000000000408        0x0
  .v4_bx         0x0000000000000000        0x0 linker stubs
 
-.iplt           0x0000000000000400        0x0
+.iplt           0x0000000000000408        0x0
  .iplt          0x0000000000000000        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.rel.dyn        0x0000000000000400        0x0
+.rel.dyn        0x0000000000000408        0x0
  .rel.iplt      0x0000000000000000        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
  .rel.got       0x0000000000000000        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.data           0x0000000000000400        0x4
+.data           0x0000000000000408        0x4
  *(.data)
- .data          0x0000000000000400        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
- .data          0x0000000000000400        0x4 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
-                0x0000000000000400                __dso_handle
- .data          0x0000000000000404        0x0 src/equations.c.8.o
- .data          0x0000000000000404        0x0 appinfo.auto.c.8.o
- .data          0x0000000000000404        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
- .data          0x0000000000000404        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
- .data          0x0000000000000404        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtn.o
+ .data          0x0000000000000408        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
+ .data          0x0000000000000408        0x4 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+                0x0000000000000408                __dso_handle
+ .data          0x000000000000040c        0x0 src/equations.c.8.o
+ .data          0x000000000000040c        0x0 appinfo.auto.c.8.o
+ .data          0x000000000000040c        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/lib/libpebble.a(tmpHP0PEBpebble.o)
+ .data          0x000000000000040c        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
+ .data          0x000000000000040c        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtn.o
  *(.data.*)
 
-.igot.plt       0x0000000000000404        0x0
+.igot.plt       0x000000000000040c        0x0
  .igot.plt      0x0000000000000000        0x0 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.got            0x0000000000000404        0x8
- .got           0x0000000000000404        0x8 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+.got            0x000000000000040c        0x8
+ .got           0x000000000000040c        0x8 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.got.plt        0x000000000000040c        0xc
- .got.plt       0x000000000000040c        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
-                0x000000000000040c                _GLOBAL_OFFSET_TABLE_
+.got.plt        0x0000000000000414        0xc
+ .got.plt       0x0000000000000414        0xc /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+                0x0000000000000414                _GLOBAL_OFFSET_TABLE_
 
-.bss            0x0000000000000418       0x24
+.bss            0x0000000000000420       0x24
  *(.bss)
  *(.bss.*)
  .bss.window_frame
-                0x0000000000000418        0x8 src/equations.c.8.o
+                0x0000000000000420        0x8 src/equations.c.8.o
  .bss.disc_layer
-                0x0000000000000420        0x4 src/equations.c.8.o
- .bss.text_layer
-                0x0000000000000424        0x4 src/equations.c.8.o
- .bss.window    0x0000000000000428        0x4 src/equations.c.8.o
- COMMON         0x000000000000042c       0x10 src/equations.c.8.o
-                0x000000000000042c                p0
-                0x0000000000000430                future_bitmap
-                0x0000000000000434                p1
-                0x0000000000000438                future_layer
+                0x0000000000000428        0x4 src/equations.c.8.o
+ .bss.window    0x000000000000042c        0x4 src/equations.c.8.o
+ COMMON         0x0000000000000430       0x14 src/equations.c.8.o
+                0x0000000000000430                p0
+                0x0000000000000434                future_bitmap
+                0x0000000000000438                p1
+                0x000000000000043c                myContext
+                0x0000000000000440                future_layer
 
 DISCARD
  libc.a(*)
@@ -801,35 +806,35 @@ OUTPUT(/Users/stevenschmatz/Desktop/equations/build/pebble-app.elf elf32-littlea
  .comment       0x0000000000000000       0x4f appinfo.auto.c.8.o
  .comment       0x0000000000000000       0x4f /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
 
-.debug_info     0x0000000000000000     0x1001
- .debug_info    0x0000000000000000      0xcb2 src/equations.c.8.o
- .debug_info    0x0000000000000cb2      0x34f appinfo.auto.c.8.o
+.debug_info     0x0000000000000000      0xff8
+ .debug_info    0x0000000000000000      0xca9 src/equations.c.8.o
+ .debug_info    0x0000000000000ca9      0x34f appinfo.auto.c.8.o
 
-.debug_abbrev   0x0000000000000000      0x42f
- .debug_abbrev  0x0000000000000000      0x384 src/equations.c.8.o
- .debug_abbrev  0x0000000000000384       0xab appinfo.auto.c.8.o
+.debug_abbrev   0x0000000000000000      0x46e
+ .debug_abbrev  0x0000000000000000      0x3c3 src/equations.c.8.o
+ .debug_abbrev  0x00000000000003c3       0xab appinfo.auto.c.8.o
 
-.debug_loc      0x0000000000000000      0x186
- .debug_loc     0x0000000000000000      0x186 src/equations.c.8.o
+.debug_loc      0x0000000000000000      0x1a0
+ .debug_loc     0x0000000000000000      0x1a0 src/equations.c.8.o
 
-.debug_aranges  0x0000000000000000       0x58
+.debug_aranges  0x0000000000000000       0x60
  .debug_aranges
-                0x0000000000000000       0x40 src/equations.c.8.o
+                0x0000000000000000       0x48 src/equations.c.8.o
  .debug_aranges
-                0x0000000000000040       0x18 appinfo.auto.c.8.o
+                0x0000000000000048       0x18 appinfo.auto.c.8.o
 
-.debug_ranges   0x0000000000000000       0xa8
- .debug_ranges  0x0000000000000000       0xa8 src/equations.c.8.o
+.debug_ranges   0x0000000000000000       0x80
+ .debug_ranges  0x0000000000000000       0x80 src/equations.c.8.o
 
-.debug_line     0x0000000000000000      0x3be
- .debug_line    0x0000000000000000      0x292 src/equations.c.8.o
- .debug_line    0x0000000000000292      0x12c appinfo.auto.c.8.o
+.debug_line     0x0000000000000000      0x3c9
+ .debug_line    0x0000000000000000      0x29d src/equations.c.8.o
+ .debug_line    0x000000000000029d      0x12c appinfo.auto.c.8.o
 
-.debug_str      0x0000000000000000      0x829
- .debug_str     0x0000000000000000      0x651 src/equations.c.8.o
-                                        0x6e7 (size before relaxing)
- .debug_str     0x0000000000000651      0x1d8 appinfo.auto.c.8.o
+.debug_str      0x0000000000000000      0x88d
+ .debug_str     0x0000000000000000      0x6b5 src/equations.c.8.o
+                                        0x749 (size before relaxing)
+ .debug_str     0x00000000000006b5      0x1d8 appinfo.auto.c.8.o
                                         0x31a (size before relaxing)
 
-.debug_frame    0x0000000000000000       0x8c
- .debug_frame   0x0000000000000000       0x8c src/equations.c.8.o
+.debug_frame    0x0000000000000000       0xa0
+ .debug_frame   0x0000000000000000       0xa0 src/equations.c.8.o
