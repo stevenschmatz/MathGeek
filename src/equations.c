@@ -17,7 +17,7 @@ int get_number_of_perimeter_pixels(int width, int height) {
 
 static void disc_draw(GContext *ctx) {
   graphics_context_set_fill_color(ctx, GColorWhite);
-  graphics_fill_circle(ctx, GPoint(50, 50), 20);
+  graphics_fill_circle(ctx, GPoint(MAXWIDTH/2, 0), 10);
 }
 
 
