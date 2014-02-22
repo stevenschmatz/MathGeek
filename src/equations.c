@@ -3,13 +3,8 @@
 static Window *window;
 GBitmap *future_bitmap;
 BitmapLayer *future_layer;
-GPoint p0, p1;
 static GRect window_frame;
 static Layer *disc_layer;
-
-GContext *myContext;
-
-//static AppTimer *timer;
 
 #define MAXWIDTH 144
 #define MAXHEIGHT 168
@@ -18,24 +13,70 @@ int get_number_of_perimeter_pixels(int width, int height) {
   return (2*width + 2*height - 4);
 }
 
+int get_disc_x_position(int seconds) {
+  double middle = MAXWIDTH/2.0;
+  int perimeter = get_number_of_perimeter_pixels(MAXWIDTH, MAXHEIGHT);
+  double increment = perimeter/60.0; // multiply by seconds to get pixels
+  double pixels = (increment*seconds);
+  
+  if ((pixels >= 0) && (pixels < MAXWIDTH/2.0)) 
+  {
+    return pixels + middle;
+  }
+
+  else if ((pixels >= middle) && (pixels < middle+MAXHEIGHT))
+  {
+    return MAXWIDTH;
+  }
+
+  else if ((pixels >= middle + MAXHEIGHT) && (pixels < (middle + MAXHEIGHT + MAXWIDTH))) {
+    return MAXWIDTH - (pixels - (middle + MAXHEIGHT));
+  }
+
+  else if ((pixels >= (middle + MAXHEIGHT + MAXWIDTH)) && (pixels < (middle + MAXHEIGHT*2 + MAXWIDTH))) {
+    return 0;
+  }
+
+  else {
+    return (pixels - (middle + MAXHEIGHT*2 + MAXWIDTH));
+  }
+
+}
+
+int get_disc_y_position(int seconds) {
+  double middle = MAXWIDTH/2.0;
+  int perimeter = get_number_of_perimeter_pixels(MAXWIDTH, MAXHEIGHT);
+  double increment = perimeter/60.0; // multiply by seconds to get pixels
+  double pixels = (increment*seconds);
+
+    if ((pixels >= 0) && (pixels < MAXWIDTH/2.0)) 
+  {
+    return 0;
+  }
+
+  else if ((pixels >= middle) && (pixels < middle+MAXHEIGHT))
+  {
+    return pixels - middle;
+  }
+
+  else if ((pixels >= middle + MAXHEIGHT) && (pixels < (middle + MAXHEIGHT + MAXWIDTH))) {
+    return MAXHEIGHT;
+  }
+
+  else if ((pixels >= (middle + MAXHEIGHT + MAXWIDTH)) && (pixels < (middle + MAXHEIGHT*2 + MAXWIDTH))) {
+    return MAXHEIGHT - (pixels - (middle + MAXHEIGHT + MAXWIDTH));
+  }
+
+  else {
+    return 0;
+  }
+}
+
+
 static void disc_draw(GContext *ctx, int x, int y) {
   graphics_context_set_fill_color(ctx, GColorWhite);
   graphics_fill_circle(ctx, GPoint(x, y), 10);
 }
-
-/*
-static void disc_layer_update_callback(Layer *layer, GContext *ctx) {
-  GRect bounds = layer_get_bounds(layer);
-  const GPoint center = grect_center_point(&bounds);
-  const int16_t secondHandLength = bounds.size.w / 2;
-
-  GPoint secondHand;
-
-  time_t now = time(NULL);
-  struct tm *t = localtime(&now);
-
-
-}*/
 
 static void window_load(Window *window) {
 
@@ -53,25 +94,25 @@ static void window_load(Window *window) {
   disc_layer = layer_create(frame);
   //layer_set_update_proc(disc_layer, disc_layer_update_callback);
   layer_add_child(window_layer, disc_layer);
-
 }
 
 static void window_unload(Window *window) {
-  //text_layer_destroy(text_layer);
 }
-
 
 void handle_second_tick(struct tm *tick_time, TimeUnits units_changed) {
   layer_mark_dirty(disc_layer);
+  //
 }
 
-
-void display_layer_update_callback(Layer *me, GContext* ctx) {
+void disc_layer_update_callback(Layer *me, GContext* ctx) {
 
   time_t now = time(NULL);
   struct tm *t = localtime(&now);
+  int seconds = t->tm_sec;
 
-  disc_draw(ctx, t->tm_sec, t->tm_sec);
+  //int pixels = get_number_of_perimeter_pixels(MAXWIDTH, MAXHEIGHT); // 620 perimeter pixels
+
+  disc_draw(ctx, get_disc_x_position(seconds), get_disc_y_position(seconds));
 
 }
 
@@ -89,7 +130,7 @@ static void init(void) {
   GRect frame = layer_get_frame(root_layer);
 
   disc_layer = layer_create(frame);
-  layer_set_update_proc(disc_layer, &display_layer_update_callback);
+  layer_set_update_proc(disc_layer, &disc_layer_update_callback);
   layer_add_child(root_layer, disc_layer);
 
   tick_timer_service_subscribe(SECOND_UNIT, &handle_second_tick);
@@ -101,7 +142,6 @@ static void deinit(void) {
   bitmap_layer_destroy(future_layer);
   tick_timer_service_unsubscribe();
 }
-
 
 int main(void) {
   init();
