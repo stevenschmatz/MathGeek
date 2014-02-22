@@ -8,6 +8,8 @@ GPoint p0, p1;
 static GRect window_frame;
 static Layer *disc_layer;
 
+static AppTimer *timer;
+
 #define MAXWIDTH 144
 #define MAXHEIGHT 168
 
@@ -15,14 +17,29 @@ int get_number_of_perimeter_pixels(int width, int height) {
   return (2*width + 2*height - 4);
 }
 
-static void disc_draw(GContext *ctx) {
+static void disc_draw(GContext *ctx, int x, int y) {
   graphics_context_set_fill_color(ctx, GColorWhite);
-  graphics_fill_circle(ctx, GPoint(MAXWIDTH/2, 0), 10);
+  graphics_fill_circle(ctx, GPoint(x, y), 10);
 }
 
 
-static void disc_layer_update_callback(Layer *me, GContext *ctx) {
-  disc_draw(ctx);
+static void disc_layer_update_callback(Layer *layer, GContext *ctx) {
+  GRect bounds = layer_get_bounds(layer);
+  const GPoint center = grect_center_point(&bounds);
+  const int16_t secondHandLength = bounds.size.w / 2;
+
+
+
+  GPoint secondHand;
+
+  
+
+  time_t now = time(NULL);
+  struct tm *t = localtime(&now);
+
+
+  disc_draw(ctx, (t->tm_sec)*(MAXWIDTH/60), MAXHEIGHT);
+
 }
 
 static void window_load(Window *window) {
@@ -40,14 +57,18 @@ static void window_load(Window *window) {
 
   disc_layer = layer_create(frame);
   layer_set_update_proc(disc_layer, disc_layer_update_callback);
-
   layer_add_child(window_layer, disc_layer);
 
 }
 
+
+
 static void window_unload(Window *window) {
   text_layer_destroy(text_layer);
 }
+
+
+
 
 static void init(void) {
   window = window_create();
@@ -58,6 +79,9 @@ static void init(void) {
   const bool animated = true;
   window_set_background_color(window, GColorBlack);
   window_stack_push(window, animated);
+
+  time_t now = time(NULL);
+  struct tm *t = localtime(&now);
 }
 
 static void deinit(void) {
@@ -65,6 +89,7 @@ static void deinit(void) {
   gbitmap_destroy(future_bitmap);
   bitmap_layer_destroy(future_layer);
 }
+
 
 int main(void) {
   init();
