@@ -6,6 +6,7 @@ BitmapLayer *future_layer;
 static GRect window_frame;
 static Layer *disc_layer;
 static Layer *equation_layer;
+int hour_index;
 
 #define MAXWIDTH 144
 #define MAXHEIGHT 168
@@ -120,13 +121,13 @@ void disc_layer_update_callback(Layer *me, GContext* ctx) {
   GRect frame = window_frame = layer_get_frame(window_layer);
 
     if (hours == 0) {
-        int hour_index = 12;
+        future_bitmap = gbitmap_create_with_resource(IMAGE_RESOURCE_IDS[11]);
+
     }
     else {
-        int hour_index = hours;
+        future_bitmap = gbitmap_create_with_resource(IMAGE_RESOURCE_IDS[(hours-1)%12]);
     }
-
-  future_bitmap = gbitmap_create_with_resource(IMAGE_RESOURCE_IDS[(hours-1)%12]);
+  
   future_layer = bitmap_layer_create(GRect(0, 0, MAXWIDTH, MAXHEIGHT));
   bitmap_layer_set_bitmap(future_layer, future_bitmap);
   bitmap_layer_set_background_color(future_layer, GColorClear);
