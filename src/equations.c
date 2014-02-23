@@ -118,7 +118,13 @@ void disc_layer_update_callback(Layer *me, GContext* ctx) {
 
   Layer *window_layer = window_get_root_layer(window);
   GRect frame = window_frame = layer_get_frame(window_layer);
-  
+
+    if (hours == 0) {
+        int hour_index = 12;
+    }
+    else {
+        int hour_index = hours;
+    }
 
   future_bitmap = gbitmap_create_with_resource(IMAGE_RESOURCE_IDS[(hours-1)%12]);
   future_layer = bitmap_layer_create(GRect(0, 0, MAXWIDTH, MAXHEIGHT));

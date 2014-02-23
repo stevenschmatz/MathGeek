@@ -1,13 +1,13 @@
-# project  configured on Sat Feb 22 19:25:31 2014 by
+# project  configured on Sun Feb 23 10:32:55 2014 by
 # waf 1.7.11 (abi 98, python 20702f0 on darwin)
 # using /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/Pebble/waf configure build
 #
 ----------------------------------------
 Setting top to
-/Users/stevenschmatz/Desktop/equations
+/Users/stevenschmatz/Computer_Science/pebble-projects/watchfaces/equations
 ----------------------------------------
 Setting out to
-/Users/stevenschmatz/Desktop/equations/build
+/Users/stevenschmatz/Computer_Science/pebble-projects/watchfaces/equations/build
 ----------------------------------------
 Checking for program gcc,cc
 arm-none-eabi-gcc

@@ -846,7 +846,7 @@ DISCARD
  libm.a(*)
  libgcc.a(*)
  *(.eh_frame)
-OUTPUT(/Users/stevenschmatz/Desktop/equations/build/pebble-app.elf elf32-littlearm)
+OUTPUT(/Users/stevenschmatz/Computer_Science/pebble-projects/watchfaces/equations/build/pebble-app.elf elf32-littlearm)
 
 .ARM.attributes
                 0x0000000000000000       0x27
@@ -916,19 +916,19 @@ OUTPUT(/Users/stevenschmatz/Desktop/equations/build/pebble-app.elf elf32-littlea
 .debug_ranges   0x0000000000000000       0xc0
  .debug_ranges  0x0000000000000000       0xc0 src/equations.c.19.o
 
-.debug_line     0x0000000000000000      0xa54
- .debug_line    0x0000000000000000      0x366 src/equations.c.19.o
- .debug_line    0x0000000000000366      0x12c appinfo.auto.c.19.o
- .debug_line    0x0000000000000492      0x20a /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
- .debug_line    0x000000000000069c      0x226 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
- .debug_line    0x00000000000008c2      0x10c /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
- .debug_line    0x00000000000009ce       0x86 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
+.debug_line     0x0000000000000000      0xa7e
+ .debug_line    0x0000000000000000      0x390 src/equations.c.19.o
+ .debug_line    0x0000000000000390      0x12c appinfo.auto.c.19.o
+ .debug_line    0x00000000000004bc      0x20a /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
+ .debug_line    0x00000000000006c6      0x226 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
+ .debug_line    0x00000000000008ec      0x10c /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_cmpdf2.o)
+ .debug_line    0x00000000000009f8       0x86 /Users/stevenschmatz/pebble-dev/PebbleSDK-2.0.0/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
 
-.debug_str      0x0000000000000000      0x9de
- .debug_str     0x0000000000000000      0x806 src/equations.c.19.o
-                                        0x8a6 (size before relaxing)
- .debug_str     0x0000000000000806      0x1d8 appinfo.auto.c.19.o
-                                        0x3ce (size before relaxing)
+.debug_str      0x0000000000000000      0xa02
+ .debug_str     0x0000000000000000      0x82a src/equations.c.19.o
+                                        0x8ca (size before relaxing)
+ .debug_str     0x000000000000082a      0x1d8 appinfo.auto.c.19.o
+                                        0x3f2 (size before relaxing)
 
 .debug_frame    0x0000000000000000       0xfc
  .debug_frame   0x0000000000000000       0xfc src/equations.c.19.o
