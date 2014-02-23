@@ -83,24 +83,12 @@ int get_disc_y_position(int minutes) {
   }
 }
 
-
 static void disc_draw(GContext *ctx, int x, int y) {
   graphics_context_set_fill_color(ctx, GColorWhite);
   graphics_fill_circle(ctx, GPoint(x, y), 10);
 }
 
 static void window_load(Window *window) {
-
-  /*Layer *window_layer = window_get_root_layer(window);
-  GRect frame = window_frame = layer_get_frame(window_layer);
-
-  future_bitmap = gbitmap_create_with_resource(IMAGE_RESOURCE_IDS[0]);
-  future_layer = bitmap_layer_create(GRect(0, 0, MAXWIDTH, MAXHEIGHT));
-  bitmap_layer_set_bitmap(future_layer, future_bitmap);
-  bitmap_layer_set_background_color(future_layer, GColorClear);
-  bitmap_layer_set_alignment(future_layer, GAlignCenter);
-  layer_add_child(window_layer, bitmap_layer_get_layer(future_layer));
-  */
 }
 
 static void window_unload(Window *window) {
