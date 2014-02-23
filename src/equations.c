@@ -120,7 +120,7 @@ void disc_layer_update_callback(Layer *me, GContext* ctx) {
 
   time_t now = time(NULL);
   struct tm *t = localtime(&now);
-  int minutes = t->tm_sec;
+  int minutes = t->tm_min;
   int hours = t->tm_hour;
 
   disc_draw(ctx, get_disc_x_position(minutes), get_disc_y_position(minutes));
@@ -132,7 +132,7 @@ void disc_layer_update_callback(Layer *me, GContext* ctx) {
   GRect frame = window_frame = layer_get_frame(window_layer);
   
 
-  future_bitmap = gbitmap_create_with_resource(IMAGE_RESOURCE_IDS[hours%12]);
+  future_bitmap = gbitmap_create_with_resource(IMAGE_RESOURCE_IDS[(hours-1)%12]);
   future_layer = bitmap_layer_create(GRect(0, 0, MAXWIDTH, MAXHEIGHT));
   bitmap_layer_set_bitmap(future_layer, future_bitmap);
   bitmap_layer_set_background_color(future_layer, GColorClear);
