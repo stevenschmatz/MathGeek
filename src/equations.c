@@ -172,7 +172,7 @@ static void init(void) {
   layer_set_update_proc(equation_layer, &equation_layer_update_callback);
   layer_add_child(root_layer, equation_layer);*/
 
-  tick_timer_service_subscribe(SECOND_UNIT, &handle_second_tick);
+  tick_timer_service_subscribe(MINUTE_UNIT, &handle_second_tick);
   //tick_timer_service_subscribe(HOUR_UNIT, &handle_hour_tick);
 }
 
